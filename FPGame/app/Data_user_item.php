@@ -8,6 +8,7 @@ class Data_user_item extends Model
 {
 	protected $table = 'data_user_item';
 	protected $fillable = ['data_user_id', 'item_id', 'quantity'];
+	public $timestamps = false;
 	
 	public function data_user()
 	{

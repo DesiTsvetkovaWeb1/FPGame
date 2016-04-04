@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Carbon\Carbon;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -61,10 +62,36 @@ class AuthController extends Controller {
 	 * @return User
 	 */
 	protected function create(array $data) {
-		return User::create ( [ 
-				'name' => $data ['name'],
-				'email' => $data ['email'],
-				'password' => bcrypt ( $data ['password'] ) 
-		] );
+	
+		$user = User::create([
+				'name' => $data['name'],
+				'email' => $data['email'],
+				'password' => bcrypt($data['password']),
+		]);
+		
+		$dataUser = \App\Data_user::create([
+				'user_id'=>$user->id,
+				'money' => '500',
+				'score' =>'0',
+				'health'=> '50',
+				'game_played'=>'0',
+				'created_at'=>Carbon::now(),
+				'updted_at'=>Carbon::now()
+		]);
+		
+		\App\Data_user_item::create([
+			'data_user_id'	=> $dataUser->id,
+			'item_id' => '1',
+			'quantity' => '1'
+		]);
+		
+		\App\Data_user_item::create([
+				'data_user_id'	=> $dataUser->id,
+				'item_id' => '2',
+				'quantity' => '100'
+		]);
+	
+		return $user;
+		
 	}
 }

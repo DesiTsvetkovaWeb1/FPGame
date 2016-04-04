@@ -8,6 +8,7 @@ class Data_user extends Model
 {
     protected $fillable = ['user_id', 'money', 'score', 'health', 'game_played'];
     
+    
     public function user()
     {
     	return $this->belongsTo(\App\User::class);

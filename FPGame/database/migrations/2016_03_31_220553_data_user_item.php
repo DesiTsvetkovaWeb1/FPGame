@@ -19,7 +19,6 @@ class DataUserItem extends Migration
     		$table->integer('item_id', false, true);
     		$table->integer('quantity');
     		
-    		
     		$table->foreign('data_user_id')
     		->references('id')
     		->on('data_users')

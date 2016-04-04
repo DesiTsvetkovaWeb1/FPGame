@@ -19,9 +19,10 @@
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
 	rel="stylesheet">
-{{--
-<link href="{{ elixir('css/app.css') }}" rel="stylesheet">
---}}
+
+<link href="css/app.css" rel="stylesheet">
+
+
 
 <style>
 body {
@@ -63,7 +64,6 @@ body {
 						data-toggle="dropdown" role="button" aria-expanded="false"> {{
 							Auth::user()->name }} <span class="caret"></span>
 					</a>
-
 						<ul class="dropdown-menu" role="menu">
 							<li><a href="{{ url('/logout') }}"><i
 									class="fa fa-btn fa-sign-out"></i>Logout</a></li>

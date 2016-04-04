@@ -31,5 +31,10 @@ class TypesTableSeeder extends Seeder
         			 
         			'type' =>'health'
         	]);
+        	
+        DB::table('types')
+        	->insert([
+        			'type' =>'premium'
+        	]);
     }
 }

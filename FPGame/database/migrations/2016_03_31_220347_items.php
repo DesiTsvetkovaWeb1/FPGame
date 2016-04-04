@@ -20,6 +20,7 @@ class Items extends Migration
     		$table->integer('capacity')->nullable();
     		$table->integer('value')->nullable();
     		$table->integer('price');
+    		$table->boolean('payed');
     		$table->string('description');
     		$table->string('image');
     		 
