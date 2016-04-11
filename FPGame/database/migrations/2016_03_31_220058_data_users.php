@@ -19,6 +19,7 @@ class DataUsers extends Migration
     		$table->integer('score')->default(0)->nullable();
     		$table->integer('health')->default(50);
     		$table->integer('game_played')->default(0)->nullable();
+    		$table->integer('kills')->default(0)->nullable();
     		$table->timestamps();
     		 
     		$table->foreign('user_id')

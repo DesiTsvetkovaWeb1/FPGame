@@ -29,12 +29,17 @@ class TypesTableSeeder extends Seeder
        	DB::table('types')
         	->insert([
         			 
-        			'type' =>'health'
+        			'type' =>'armor'
         	]);
         	
         DB::table('types')
         	->insert([
         			'type' =>'premium'
         	]);
+        	
+        DB::table('types')
+        ->insert([
+        	'type' =>'armor'
+        ]);
     }
 }

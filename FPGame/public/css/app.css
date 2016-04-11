@@ -1,92 +1,43 @@
-.cell {
-	display: inline-block;
-	margin: 5px;
-	padding: 10px;
-	width: 40%;
+body, html{
+height:100%;
+margin:0px;
+padding:0px;	
+font-size:16px;
+background: url("/images/fon.png") no-repeat  center center fixed;
+ background-size: auto 100%;
+ background-color:black;
+ background-position: right;
+
+}
+html{
+ overflow-y:scroll;	
+}
+
+#container{
+
+ margin:0px;
+ padding:0px;
+ min-height:100%;
 }
 
 img {
 	width: 120px;
-	hight: 160px;
+	height: 120px;
+	border-radius:3px;
 }
 
-.range {
-	width: 140px;
+.navbar{
+	margin-bottom:0px;
+	
+}
+.sp{
+	padding:15px;
+}
+.row{
+ margin-top: 10%;
 }
 
-td {
-	width: 400px;
-	padding: 15px;
-	margin: 10px;
-	text-align: left;
-	vertical-align: top;
-}
-
-table {
-	margin: auto;
-	margin-top: 7%;
-}
-
-.btn {
-	margin: 0 auto;
-	margin-top: 15px;	
-
-}
-
-.main_img{
-	width:300px;
-	height:300px;
-	margin:auto;
-}
-
-#left_side{
-	display:inline-block;
-	width:80%;
-	margin:auto;
-}
-
-#right_side{
-	display:inline-block;
-	width:10%;
-	float:right;
-}
-
-.btn-center{
-	display:block;
-	width:100px;
-	margin:0 auto;
-	margin-top:20px;
-}
-
-
-ul #double{
-
-  margin-bottom:20px;
-  overflow:hidden;
-}
-.li {
-	margin-top:20px;
-  line-height:1.5em;
-  float:left;
-  display:inline;
-  width:50%;
-}
-
-#col{
-	width:70%;
-	margin:auto;
-}
-
-.index-image-li{
-	overflow:hidden;
-	margin-right:5px;
-	margin-top:25px;
-	float:left;
-	width:120px;
-	height:140px;
-}
-
-#btn-r{
-	float:right;
-	margin-right:30px;
+.play{
+	font-size:22px;
+	font-wight:bold;
 }

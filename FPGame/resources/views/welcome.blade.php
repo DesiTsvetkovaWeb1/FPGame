@@ -1,17 +1,22 @@
 @extends('layouts.app')
 @section('content')
+
+@section('css')
+<link href="css/welcome.css" rel="stylesheet">
+ @endsection
+ 
 <div class="container">
-	<div class="row">
+	
 		<div class="col-md-10 col-md-offset-1">
 			<div >
 				<div class="panel-body">
 				
-					<img src="#" class="img-responsive img-rounded main_img " >
-					
+					<div class="putsar-wellcomepage"><img src = "/images/logo2.png"></div>
+					<div id = "play-div"><a class="btn btn-primary btn-lg play-btn" href = "/login" role = "button">Play</a></div>
  				</div>
 			</div>
 		</div>
-	</div>
+
 </div>
 	
 @endsection

@@ -1,4 +1,8 @@
-@extends('layouts.app') @section('content')
+@extends('layouts.app')
+ @section('css')
+ <link href="css/login.css" rel="stylesheet">
+ @endsection
+ @section('content')
 <div class="container">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
@@ -53,6 +57,10 @@
 							</div>
 						</div>
 					</form>
+					<div id="play-div">
+					<div><em>LogIn with Facebook</em></div>
+					<div><a class="btn btn-primary" href = "auth/facebook" role = "button">Facebook</a></div>
+					</div>
 				</div>
 			</div>
 		</div>

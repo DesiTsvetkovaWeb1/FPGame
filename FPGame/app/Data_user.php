@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Data_user extends Model
 {
+	
+	
     protected $fillable = ['user_id', 'money', 'score', 'health', 'game_played'];
     
     

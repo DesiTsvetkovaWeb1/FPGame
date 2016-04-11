@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+
+use Auth;
+use Socialite;
 use App\User;
 use Carbon\Carbon;
 use Validator;
@@ -75,6 +78,7 @@ class AuthController extends Controller {
 				'score' =>'0',
 				'health'=> '50',
 				'game_played'=>'0',
+				'kills'=> '0',
 				'created_at'=>Carbon::now(),
 				'updted_at'=>Carbon::now()
 		]);
@@ -85,13 +89,82 @@ class AuthController extends Controller {
 			'quantity' => '1'
 		]);
 		
-		\App\Data_user_item::create([
-				'data_user_id'	=> $dataUser->id,
-				'item_id' => '2',
-				'quantity' => '100'
-		]);
-	
+		
 		return $user;
 		
+	}
+	
+	protected $redirectPath = '/';
+	
+	/**
+	 * Redirect the user to the Facebook authentication page.
+	 *
+	 * @return Response
+	 */
+	public function redirectToProvider()
+	{
+		return Socialite::driver('facebook')->redirect();
+	}
+	
+	/**
+	 * Obtain the user information from Facebook.
+	 *
+	 * @return Response
+	 */
+	public function handleProviderCallback()
+	{
+		try {
+			$user = Socialite::driver('facebook')->user();
+		} catch (Exception $e) {
+			return redirect('auth/facebook');
+		}
+	
+		$authUser = $this->findOrCreateUser($user);
+	
+		Auth::login($authUser, true);
+	
+		return redirect()->action('ProfileController@index');;
+	}
+	
+	/**
+	 * Return user if exists; create and return if doesn't
+	 *
+	 * @param $facebookUser
+	 * @return User
+	 */
+	private function findOrCreateUser($facebookUser)
+	{
+		$authUser = User::where('facebook_id', $facebookUser->id)->first();
+	
+		if ($authUser){
+			return $authUser;
+		}
+		else{
+	
+		$user =  User::create([
+				'name' => $facebookUser->name,
+				'email' => $facebookUser->email,
+				'facebook_id' => $facebookUser->id,
+				
+		]);
+		
+		$dataUser = \App\Data_user::create([
+				'user_id'=>$user->id,
+				'money' => '500',
+				'score' =>'0',
+				'health'=> '50',
+				'game_played'=>'0',
+				'kills'=> '0',
+				'created_at'=>Carbon::now(),
+				'updted_at'=>Carbon::now()
+		]);
+		
+		\App\Data_user_item::create([
+				'data_user_id'	=> $dataUser->id,
+				'item_id' => '1',
+				'quantity' => '1'
+		]);
+		}
+		return $user;
 	}
 }

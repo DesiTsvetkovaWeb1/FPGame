@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta name="csrf-token" content="{{ csrf_token() }}" /> 
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,13 +16,10 @@
 	href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700"
 	rel='stylesheet' type='text/css'>
 
-<!-- Styles -->
-<link
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-	rel="stylesheet">
+<link href = "https://bootswatch.com/slate/bootstrap.min.css" rel = "stylesheet">
 
 <link href="css/app.css" rel="stylesheet">
-
+@yield('css')
 
 
 <style>
@@ -35,7 +33,7 @@ body {
 </style>
 </head>
 <body id="app-layout">
-	<nav class="navbar navbar-default navbar-static-top">
+	<nav class="navbar-fixed-top navbar navbar-default navbar-static-top  ">
 		<div class="container">
 			<div class="navbar-header">
 
@@ -52,8 +50,24 @@ body {
 				<!-- Left Side Of Navbar -->
 				<ul class="nav navbar-nav">
 					<li><a href="{{ url('/home') }}">Home</a></li>
-				</ul>
-
+					@if(Auth::user())
+					<li><a href="/magazine">Store</a></li>
+					<!-- <li><a href="/magazine">Community</a></li> -->
+					<li class="dropdown">
+			          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Statistics <span class="caret"></span></a>
+			          <ul class="dropdown-menu" role="menu">
+			            <li><a href="/statisticKills">Kills</a></li>
+			            <li><a href="/statisticScore">Score</a></li>
+			            <li><a href="/statisticGame">Game</a></li>
+			           <!--  <li><a href="/myStatistics">Player</a></li> -->
+			          </ul>
+			        </li>
+					<li class = "sp" id="sp1">Money: {{$data->money}}</li>
+					<li class = "sp" id="sp2">Score: {{$data->score}}</li>
+					<li class = "sp" id="sp3">Played games: {{$data->game_played}}</li>
+					
+					@endif
+				</ul>			
 				<!-- Right Side Of Navbar -->
 				<ul class="nav navbar-nav navbar-right">
 					<!-- Authentication Links -->
@@ -68,13 +82,19 @@ body {
 							<li><a href="{{ url('/logout') }}"><i
 									class="fa fa-btn fa-sign-out"></i>Logout</a></li>
 						</ul></li> @endif
+				<li class= "play"><a href="/play">Play</a></li>
 				</ul>
+				
 			</div>
 		</div>
 	</nav>
-
+	
+</div>
+	<div id = "container">
 	@yield('content')
-
+	
+	@yield('script')
+	
 	<!-- JavaScripts -->
 	<script
 		src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
@@ -83,5 +103,6 @@ body {
 	{{--
 	<script src="{{ elixir('js/app.js') }}"></script>
 	--}}
+	</div>
 </body>
 </html>
